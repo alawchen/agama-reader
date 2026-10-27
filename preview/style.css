@@ -74,7 +74,7 @@ button { font: inherit; color: inherit; }
 .toc-extra a { padding-left: 12px; }
 
 .reader { min-width: 0; padding: 44px 40px 0; }
-.reader article { max-width: 36em; margin: 0 auto; font-size: var(--fs); }
+.reader article { max-width: 36em; margin: 0 auto; font-size: var(--fs); overflow-wrap: break-word; }
 .kicker { margin: 0 0 6px; font-size: 14px; letter-spacing: 0.3em; color: var(--accent); }
 h1 { margin: 0 0 12px; font-size: 1.8em; font-weight: 700; letter-spacing: 0.12em; line-height: 1.4; }
 .rule { width: 48px; height: 2px; background: var(--accent); margin-bottom: 2em; }
@@ -167,5 +167,6 @@ a.cite { text-decoration-style: dotted; text-underline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { .toc { transition: none; } }
 
 /* === 更新日誌 === */
+/* [2026-10-27] [v1.3] 正文與名詞表的長巴利文字可在邊界斷行，修正手機出現橫向捲軸 */
 /* [2026-10-27] [v1.2] 名詞解釋的出處與分段樣式 */
 /* [2026-10-27] [v1.1] 底部導覽列常駐畫面底部，捲到頁尾時回到原位 */
