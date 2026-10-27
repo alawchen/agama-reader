@@ -114,7 +114,7 @@ a.cite { text-decoration-style: dotted; text-underline-offset: 3px; }
 .notes li .back { color: var(--accent); font-weight: 700; text-decoration: none; }
 .notes li.active { background: var(--card); border-color: var(--accent); color: var(--text); }
 
-.pager { max-width: calc(var(--fs) * 36); margin: 3em auto 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 15px; border-top: 1px solid var(--rule); padding-top: 16px; }
+.pager { position: sticky; bottom: 0; z-index: 10; background: var(--bg); padding-bottom: 8px; max-width: calc(var(--fs) * 36); margin: 3em auto 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 15px; border-top: 1px solid var(--rule); padding-top: 16px; }
 .pager a { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
 .pager .count { color: var(--muted); font-size: 13px; white-space: nowrap; }
 .credit { max-width: calc(var(--fs) * 36); margin: 16px auto 40px; font-size: 13px; color: var(--muted); text-align: center; line-height: 1.8; }
@@ -124,6 +124,8 @@ a.cite { text-decoration-style: dotted; text-underline-offset: 3px; }
 .start, .resume-link { font-weight: 600; text-decoration: none; }
 .gloss dt { font-weight: 700; margin-top: 1.4em; color: var(--accent); }
 .gloss dd { margin: 0.3em 0 0; line-height: 1.9; font-size: 0.92em; }
+.gloss-src { display: inline-block; margin-top: 4px; font-size: 13px; color: var(--muted); }
+.gloss-sep { border: none; border-top: 1px dashed var(--rule); margin: 10px 0; }
 
 /* 浮動卡片（窄螢幕註解、名詞解釋） */
 .popover {
@@ -163,3 +165,7 @@ a.cite { text-decoration-style: dotted; text-underline-offset: 3px; }
   h1 { font-size: 1.5em; }
 }
 @media (prefers-reduced-motion: reduce) { .toc { transition: none; } }
+
+/* === 更新日誌 === */
+/* [2026-10-27] [v1.2] 名詞解釋的出處與分段樣式 */
+/* [2026-10-27] [v1.1] 底部導覽列常駐畫面底部，捲到頁尾時回到原位 */

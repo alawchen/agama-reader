@@ -49,11 +49,16 @@
 
   // 浮動卡片
   var pop = null, lastTrigger = null;
-  function closePop() {
+  function closePop(noFocus) {
     if (pop) { pop.remove(); pop = null; }
     document.querySelectorAll('.nref a.active, .notes li.active').forEach(function (el) { el.classList.remove('active'); });
-    if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
+    if (lastTrigger && noFocus !== true) lastTrigger.focus();
+    lastTrigger = null;
   }
+  // 點卡片以外的位置關閉卡片（不把焦點拉回觸發處，避免畫面跳動）
+  document.addEventListener('click', function (e) {
+    if (pop && !e.target.closest('.popover, .nref a, .term')) closePop(true);
+  });
   function openPop(label, html, trigger) {
     closePop();
     lastTrigger = trigger;
@@ -97,9 +102,9 @@
   // 名詞解釋
   document.querySelectorAll('.term').forEach(function (b) {
     b.addEventListener('click', function () {
-      var g = (window.GLOSSARY || [])[Number(b.dataset.term)];
+      var g = (window.GLOSSARY || {})[b.dataset.term];
       if (!g) return;
-      openPop(g.term, g.html + '<p style="margin:10px 0 0"><a href="' + g.page + '.html#note-' + g.n + '">出自原書註解 →</a></p>', b);
+      openPop(g.term, g.html, b);
     });
   });
 
@@ -133,3 +138,7 @@
     }
   }
 })();
+
+// === 更新日誌 ===
+// [2026-10-27] [v1.2] 名詞卡片改用建置時組好的解釋與出處（含原站註解）
+// [2026-10-27] [v1.1] 點卡片以外位置可關閉註解／名詞卡片
