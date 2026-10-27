@@ -108,6 +108,44 @@
     });
   });
 
+  // 經文白話：原文／對照／白話切換，記住讀者的選擇
+  var modeBtns = document.querySelectorAll('.modes [data-mode]');
+  var sutraText = document.querySelector('.sutra-text.has-tr');
+  function applyMode() {
+    var m = prefs.mode || 'both';
+    if (sutraText) sutraText.dataset.mode = m;
+    modeBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.mode === m)); });
+  }
+  modeBtns.forEach(function (b) {
+    b.addEventListener('click', function () { prefs.mode = b.dataset.mode; save('ar:prefs', prefs); applyMode(); });
+  });
+  applyMode();
+
+  // 從搜尋結果進入（網址 #q=詞）：標示第一個含該詞的段落並捲動過去
+  var hashQ = location.hash.indexOf('#q=') === 0 ? decodeURIComponent(location.hash.slice(3)) : '';
+  if (hashQ) {
+    var blocks = document.querySelectorAll('article .seg, article p, article li, article dd, .notes li');
+    for (var i = 0; i < blocks.length; i++) {
+      var el = blocks[i];
+      if (el.textContent.indexOf(hashQ) < 0 || el.querySelector('.seg')) continue;
+      // 詞只出現在目前隱藏的原文或白話時，暫時改為對照模式（不存入偏好）
+      var shownPart = el.classList.contains('seg') && sutraText && el.querySelector(sutraText.dataset.mode === 'orig' ? '.zh' : sutraText.dataset.mode === 'plain' ? '.bh' : '.seg');
+      if (shownPart && shownPart.textContent.indexOf(hashQ) < 0) sutraText.dataset.mode = 'both';
+      var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT), node;
+      while ((node = walker.nextNode())) {
+        var at = node.data.indexOf(hashQ);
+        if (at < 0) continue;
+        var range = document.createRange();
+        range.setStart(node, at); range.setEnd(node, at + hashQ.length);
+        range.surroundContents(document.createElement('mark'));
+        break;
+      }
+      el.classList.add('search-hit');
+      el.scrollIntoView({ block: 'center' });
+      break;
+    }
+  }
+
   // 閱讀進度與續讀位置
   var main = document.querySelector('.reader');
   var bar = document.querySelector('.progress-bar');
@@ -142,3 +180,5 @@
 // === 更新日誌 ===
 // [2026-10-27] [v1.2] 名詞卡片改用建置時組好的解釋與出處（含原站註解）
 // [2026-10-27] [v1.1] 點卡片以外位置可關閉註解／名詞卡片
+// [2026-10-27] [v1.3] 經文頁原文／對照／白話切換，選擇存於閱讀偏好
+// [2026-10-27] [v1.4] 從搜尋結果進入時標示並捲到含搜尋詞的段落
