@@ -121,6 +121,47 @@ a.cite { text-decoration-style: dotted; text-underline-offset: 3px; }
 
 .home-list { list-style: none; padding: 0; margin: 0 0 1em; }
 .home-list a { display: block; padding: 6px 0; text-decoration: none; }
+.sutra-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(11em, 1fr)); column-gap: 1.5em; }
+article p.meta { font-size: 14px; line-height: 1.8; color: var(--muted); margin: 0.4em 0 0; }
+.kicker a { color: inherit; text-decoration: none; }
+.toc-group a { color: inherit; }
+
+/* 全文搜尋（SR-1） */
+.search-form { display: flex; gap: 8px; margin: 0 0 12px; }
+.search-form input { flex: 1; min-width: 0; font: inherit; font-size: 17px; padding: 8px 12px; border: 1px solid var(--rule); border-radius: 8px; background: var(--card); color: var(--text); }
+.search-form button, .search-more { font-size: 15px; padding: 8px 16px; border: 1px solid var(--accent); border-radius: 8px; background: var(--accent); color: var(--bg); cursor: pointer; }
+.search-more { background: transparent; color: var(--accent); }
+.search-scope { border: 0; padding: 0; margin: 0 0 8px; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 14px; }
+.search-scope legend { float: left; margin-right: 8px; color: var(--muted); }
+.search-hint, .search-status { font-size: 14px; color: var(--muted); text-indent: 0; }
+.search-results { list-style: none; padding: 0; margin: 0; }
+.search-results li { padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.search-results li > a { font-weight: 600; text-decoration: none; }
+.search-results p { margin: 6px 0 0; font-size: 15px; line-height: 1.8; text-indent: 0; text-align: left; overflow-wrap: break-word; }
+.search-meta { font-size: 13px; color: var(--muted); }
+mark { background: var(--hl); color: inherit; padding: 0 1px; }
+.search-hit { outline: 2px solid var(--hl); outline-offset: 4px; border-radius: 2px; }
+.search-link { text-decoration: none; color: inherit; display: inline-flex; align-items: center; justify-content: center; }
+
+/* 經文白話對照（TR-2）：對照模式桌機左右並排、手機逐句交錯，譯文左側淺色細條 */
+.modes { display: inline-flex; margin: 0 0 8px; border: 1px solid var(--rule); border-radius: 999px; overflow: hidden; }
+.modes button { border: 0; background: transparent; padding: 6px 16px; font-size: 14px; cursor: pointer; min-height: 36px; }
+.modes button[aria-pressed="true"] { background: var(--accent); color: var(--bg); }
+.ai-note { font-size: 13px; color: var(--muted); line-height: 1.7; margin: 0 0 1.4em; }
+.sutra-text .para { margin: 0 0 1em; line-height: var(--lh, 2); }
+.sutra-text .zh, .sutra-text .bh { overflow-wrap: break-word; }
+.sutra-text[data-mode="orig"] .bh, .sutra-text[data-mode="plain"] .zh { display: none; }
+.sutra-text[data-mode="orig"] .para, .sutra-text[data-mode="plain"] .para { text-indent: 2em; text-align: justify; }
+.sutra-text[data-mode="both"] .para { margin: 0; }
+.sutra-text[data-mode="both"] .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2em; padding: 6px 0; border-bottom: 1px dotted var(--rule); }
+.sutra-text[data-mode="both"] .bh { color: var(--text); }
+.term.fn { border: 0; color: var(--accent); font-size: 0.7em; vertical-align: super; line-height: 0; padding: 0 2px; }
+.term.doubt { border: 0; color: var(--accent); font-size: 0.8em; }
+@media (min-width: 1200px) { .reader.sutra article:has(.has-tr[data-mode="both"]) { max-width: 52em; } }
+@media (max-width: 760px) {
+  .sutra-text[data-mode="both"] .seg { grid-template-columns: 1fr; padding: 8px 0; }
+  .sutra-text[data-mode="both"] .bh { font-size: 0.9em; margin-top: 4px; padding-left: 10px; border-left: 3px solid var(--hl); }
+}
 .start, .resume-link { font-weight: 600; text-decoration: none; }
 .gloss dt { font-weight: 700; margin-top: 1.4em; color: var(--accent); }
 .gloss dd { margin: 0.3em 0 0; line-height: 1.9; font-size: 0.92em; }
@@ -164,9 +205,59 @@ a.cite { text-decoration-style: dotted; text-underline-offset: 3px; }
   .notes { grid-column: 1; padding: 24px 20px 40px; }
   h1 { font-size: 1.5em; }
 }
+@media (max-width: 400px) {
+  .swatch { width: 38px; height: 38px; }
+  .search-link { border: none; min-width: 40px; padding: 0 4px; }
+}
 @media (prefers-reduced-motion: reduce) { .toc { transition: none; } }
+.crumb a { color: var(--muted); }
+.crumb a:hover { color: var(--text); }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin: 0 0 1.2em; }
+.card { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border: 1px solid var(--rule); border-radius: 8px; color: var(--text); text-decoration: none; min-width: 0; }
+.card:hover { border-color: var(--muted); }
+.card-title { font-weight: 700; }
+.card-desc { font-size: 0.85em; color: var(--muted); text-indent: 0; }
+.card-progress { display: flex; align-items: center; gap: 8px; margin-top: auto; }
+.card-progress .bar { flex: 1; height: 6px; border-radius: 3px; background: var(--rule); overflow: hidden; }
+.card-progress .bar span { display: block; height: 100%; background: var(--accent); }
+.card-meta { font-size: 0.75em; color: var(--muted); white-space: nowrap; }
+
+/* 頂列按鈕滑鼠移入說明（觸控裝置不顯示） */
+@media (hover: hover) {
+  [data-tip] { position: relative; }
+  [data-tip]:hover::after {
+    content: attr(data-tip); position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+    padding: 4px 10px; border-radius: 4px; background: var(--text); color: var(--bg);
+    font-size: 13px; line-height: 1.5; white-space: nowrap; pointer-events: none; z-index: 30;
+  }
+}
+
+/* 首頁四阿含卡片桌機一列四張；頁尾放寬到可一行排完（正文寬度不變） */
+@media (min-width: 900px) {
+  .cards-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .cards-4 .card { padding: 12px; }
+  .cards-4 .card-progress { flex-wrap: wrap; gap: 4px; }
+  .cards-4 .card-progress .bar { flex-basis: 100%; }
+  .credit { max-width: none; margin-left: -24px; margin-right: -24px; }
+}
+@media (min-width: 900px) and (max-width: 1100px) { .credit { font-size: 12px; } }
+
+/* 名詞表左欄注音分組與條目分隔線（UX-7） */
+.toc details summary { display: flex; justify-content: space-between; align-items: center; padding: 7px 12px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+.toc details summary:hover { background: var(--hl); }
+.toc summary .count { font-size: 12px; font-weight: 400; color: var(--muted); }
+.toc details ul a { padding-left: 24px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.gloss-item { padding: 0 0 1.2em; border-bottom: 1px solid var(--rule); }
+.gloss-item:last-child { border-bottom: 0; }
 
 /* === 更新日誌 === */
+/* [2026-10-28] [v1.7] 首頁資料卡片與白話進度條；頂列路徑連結 */
+/* [2026-10-27] [v1.6] 全文搜尋頁、搜尋結果與命中段落標示；400px 以下縮小底色鈕，避免頂列加搜尋鈕後超出畫面 */
+/* [2026-10-27] [v1.5] 經文白話對照與模式切換樣式 */
+/* [2026-10-27] [v1.4] 經文頁資訊列與各部目錄的經目多欄排列 */
 /* [2026-10-27] [v1.3] 正文與名詞表的長巴利文字可在邊界斷行，修正手機出現橫向捲軸 */
 /* [2026-10-27] [v1.2] 名詞解釋的出處與分段樣式 */
 /* [2026-10-27] [v1.1] 底部導覽列常駐畫面底部，捲到頁尾時回到原位 */
+/* [2026-10-28] [v1.8] 頂列按鈕滑鼠移入說明 */
+/* [2026-10-28] [v1.9] 首頁四阿含卡片桌機一列四張；頁尾桌機放寬 */
+/* [2026-10-28] [v1.10] 名詞表左欄注音分組與條目分隔線 */
