@@ -222,6 +222,34 @@ mark { background: var(--hl); color: inherit; padding: 0 1px; }
 .card-progress .bar span { display: block; height: 100%; background: var(--accent); }
 .card-meta { font-size: 0.75em; color: var(--muted); white-space: nowrap; }
 
+/* 頂列按鈕滑鼠移入說明（觸控裝置不顯示） */
+@media (hover: hover) {
+  [data-tip] { position: relative; }
+  [data-tip]:hover::after {
+    content: attr(data-tip); position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+    padding: 4px 10px; border-radius: 4px; background: var(--text); color: var(--bg);
+    font-size: 13px; line-height: 1.5; white-space: nowrap; pointer-events: none; z-index: 30;
+  }
+}
+
+/* 首頁四阿含卡片桌機一列四張；頁尾放寬到可一行排完（正文寬度不變） */
+@media (min-width: 900px) {
+  .cards-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .cards-4 .card { padding: 12px; }
+  .cards-4 .card-progress { flex-wrap: wrap; gap: 4px; }
+  .cards-4 .card-progress .bar { flex-basis: 100%; }
+  .credit { max-width: none; margin-left: -24px; margin-right: -24px; }
+}
+@media (min-width: 900px) and (max-width: 1100px) { .credit { font-size: 12px; } }
+
+/* 名詞表左欄注音分組與條目分隔線（UX-7） */
+.toc details summary { display: flex; justify-content: space-between; align-items: center; padding: 7px 12px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+.toc details summary:hover { background: var(--hl); }
+.toc summary .count { font-size: 12px; font-weight: 400; color: var(--muted); }
+.toc details ul a { padding-left: 24px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.gloss-item { padding: 0 0 1.2em; border-bottom: 1px solid var(--rule); }
+.gloss-item:last-child { border-bottom: 0; }
+
 /* === 更新日誌 === */
 /* [2026-10-28] [v1.7] 首頁資料卡片與白話進度條；頂列路徑連結 */
 /* [2026-10-27] [v1.6] 全文搜尋頁、搜尋結果與命中段落標示；400px 以下縮小底色鈕，避免頂列加搜尋鈕後超出畫面 */
@@ -230,3 +258,6 @@ mark { background: var(--hl); color: inherit; padding: 0 1px; }
 /* [2026-10-27] [v1.3] 正文與名詞表的長巴利文字可在邊界斷行，修正手機出現橫向捲軸 */
 /* [2026-10-27] [v1.2] 名詞解釋的出處與分段樣式 */
 /* [2026-10-27] [v1.1] 底部導覽列常駐畫面底部，捲到頁尾時回到原位 */
+/* [2026-10-28] [v1.8] 頂列按鈕滑鼠移入說明 */
+/* [2026-10-28] [v1.9] 首頁四阿含卡片桌機一列四張；頁尾桌機放寬 */
+/* [2026-10-28] [v1.10] 名詞表左欄注音分組與條目分隔線 */
