@@ -210,8 +210,20 @@ mark { background: var(--hl); color: inherit; padding: 0 1px; }
   .search-link { border: none; min-width: 40px; padding: 0 4px; }
 }
 @media (prefers-reduced-motion: reduce) { .toc { transition: none; } }
+.crumb a { color: var(--muted); }
+.crumb a:hover { color: var(--text); }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin: 0 0 1.2em; }
+.card { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border: 1px solid var(--rule); border-radius: 8px; color: var(--text); text-decoration: none; min-width: 0; }
+.card:hover { border-color: var(--muted); }
+.card-title { font-weight: 700; }
+.card-desc { font-size: 0.85em; color: var(--muted); text-indent: 0; }
+.card-progress { display: flex; align-items: center; gap: 8px; margin-top: auto; }
+.card-progress .bar { flex: 1; height: 6px; border-radius: 3px; background: var(--rule); overflow: hidden; }
+.card-progress .bar span { display: block; height: 100%; background: var(--accent); }
+.card-meta { font-size: 0.75em; color: var(--muted); white-space: nowrap; }
 
 /* === 更新日誌 === */
+/* [2026-10-28] [v1.7] 首頁資料卡片與白話進度條；頂列路徑連結 */
 /* [2026-10-27] [v1.6] 全文搜尋頁、搜尋結果與命中段落標示；400px 以下縮小底色鈕，避免頂列加搜尋鈕後超出畫面 */
 /* [2026-10-27] [v1.5] 經文白話對照與模式切換樣式 */
 /* [2026-10-27] [v1.4] 經文頁資訊列與各部目錄的經目多欄排列 */
