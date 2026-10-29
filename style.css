@@ -155,7 +155,7 @@ mark { background: var(--hl); color: inherit; padding: 0 1px; }
 .sutra-text[data-mode="both"] .para { margin: 0; }
 .sutra-text[data-mode="both"] .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2em; padding: 6px 0; border-bottom: 1px dotted var(--rule); }
 .sutra-text[data-mode="both"] .bh { color: var(--text); }
-.sutra-text .seg [data-n]::before { content: attr(data-n); color: var(--muted); opacity: 0.55; margin-right: 1em; font-variant-numeric: tabular-nums; }
+.sutra-text[data-mode="both"] .seg [data-n]::before { content: attr(data-n); color: var(--muted); opacity: 0.55; margin-right: 1em; font-variant-numeric: tabular-nums; }
 .sutra-text[data-mode="both"] .bh::before { content: none; }
 .term.fn { border: 0; color: var(--accent); font-size: 0.7em; vertical-align: super; line-height: 0; padding: 0 2px; }
 .term.doubt { border: 0; color: var(--accent); font-size: 0.8em; }
@@ -267,3 +267,4 @@ mark { background: var(--hl); color: inherit; padding: 0 1px; }
 /* [2026-10-29] [v1.12] 句號改為與內文同大、不上標，與文字間隔一個全形字寬 */
 /* [2026-10-29] [v1.13] 句號顏色再調淡 */
 /* [2026-10-29] [v1.14] 對照模式加寬時底部導覽列同寬，避免兩側露出背後經文 */
+/* [2026-10-29] [v1.15] 句號只在「對照」模式顯示，「原文」「白話」模式依段落行文不加號 */
