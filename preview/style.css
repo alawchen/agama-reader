@@ -159,7 +159,7 @@ mark { background: var(--hl); color: inherit; padding: 0 1px; }
 .sutra-text[data-mode="both"] .bh::before { content: none; }
 .term.fn { border: 0; color: var(--accent); font-size: 0.7em; vertical-align: super; line-height: 0; padding: 0 2px; }
 .term.doubt { border: 0; color: var(--accent); font-size: 0.8em; }
-@media (min-width: 1200px) { .reader.sutra article:has(.has-tr[data-mode="both"]) { max-width: 52em; } }
+@media (min-width: 1200px) { .reader.sutra article:has(.has-tr[data-mode="both"]) { max-width: 52em; } .reader.sutra:has(.has-tr[data-mode="both"]) .pager { max-width: calc(var(--fs) * 52); } }
 @media (max-width: 760px) {
   .sutra-text[data-mode="both"] .seg { grid-template-columns: 1fr; padding: 8px 0; }
   .sutra-text[data-mode="both"] .bh { font-size: 0.9em; margin-top: 4px; padding-left: 10px; border-left: 3px solid var(--hl); }
@@ -266,3 +266,4 @@ mark { background: var(--hl); color: inherit; padding: 0 1px; }
 /* [2026-10-29] [v1.11] 有譯文的經文每句前顯示淡色句號 */
 /* [2026-10-29] [v1.12] 句號改為與內文同大、不上標，與文字間隔一個全形字寬 */
 /* [2026-10-29] [v1.13] 句號顏色再調淡 */
+/* [2026-10-29] [v1.14] 對照模式加寬時底部導覽列同寬，避免兩側露出背後經文 */
