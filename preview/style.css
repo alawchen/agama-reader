@@ -155,6 +155,8 @@ mark { background: var(--hl); color: inherit; padding: 0 1px; }
 .sutra-text[data-mode="both"] .para { margin: 0; }
 .sutra-text[data-mode="both"] .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2em; padding: 6px 0; border-bottom: 1px dotted var(--rule); }
 .sutra-text[data-mode="both"] .bh { color: var(--text); }
+.sutra-text .seg [data-n]::before { content: attr(data-n); font-size: 0.6em; color: var(--muted); vertical-align: super; line-height: 0; margin-right: 3px; font-variant-numeric: tabular-nums; }
+.sutra-text[data-mode="both"] .bh::before { content: none; }
 .term.fn { border: 0; color: var(--accent); font-size: 0.7em; vertical-align: super; line-height: 0; padding: 0 2px; }
 .term.doubt { border: 0; color: var(--accent); font-size: 0.8em; }
 @media (min-width: 1200px) { .reader.sutra article:has(.has-tr[data-mode="both"]) { max-width: 52em; } }
@@ -261,3 +263,4 @@ mark { background: var(--hl); color: inherit; padding: 0 1px; }
 /* [2026-10-28] [v1.8] 頂列按鈕滑鼠移入說明 */
 /* [2026-10-28] [v1.9] 首頁四阿含卡片桌機一列四張；頁尾桌機放寬 */
 /* [2026-10-28] [v1.10] 名詞表左欄注音分組與條目分隔線 */
+/* [2026-10-29] [v1.11] 有譯文的經文每句前顯示淡色句號 */
